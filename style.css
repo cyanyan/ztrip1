@@ -1,0 +1,180 @@
+body {
+  background: white;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: black;
+  position: relative;
+}
+
+/* 顶部 Today 信息 */
+#moon-info {
+  position: fixed;
+  color: rgb(255, 255, 255);
+  mix-blend-mode: difference;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 350;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 5;
+}
+
+/* 居中容器（上下居中 + 顶部对齐） */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 100px;
+  align-items: flex-start; /* 顶部对齐 */
+  justify-content: center;
+  z-index: 3;
+}
+
+.moon-block {
+  position: relative;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0); /* 整个区域可点击 */
+}
+
+canvas {
+  display: block;
+}
+
+.label {
+  position: absolute;
+  right: -28px;
+  top: -24px;
+  font-size: 13px;
+  font-weight: 350;
+}
+
+/* 图片与文字显示（最下层） */
+#display-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+#display-area.visible {
+  opacity: 1;
+}
+
+/* 图片（放在下层） */
+#display-img {
+  display: block;
+  max-width: 400px;
+  max-height: 300px;
+  transform-origin: center center;
+  transition: transform 2s ease, transform-origin 5s ease;
+  z-index: 10;
+  position: relative;
+
+}
+
+/* 第一行样式：衬线体斜体 */
+#display-text span.first-line {
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+/* 其他行样式：无衬线体 */
+#display-text span.other-line {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.2px;
+  font-size: 11.3px;
+}
+#display-text {
+  line-height: 1.4;
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13.3px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  z-index: 40;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  white-space: pre-line;
+}
+
+#display-text.visible {
+  opacity: 1;
+}
+
+
+/* 底部编号（最上层，可点击） */
+.number-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 50; /* 始终最上层 */
+}
+
+.number-bar div span {
+  cursor: pointer;
+  font-size: 13.3px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.number-bar div span:hover {
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+.number-bar div span::after {
+  content: ",";
+  margin: 0 5px;
+}
+
+.number-bar div span:last-child::after {
+  content: "";
+}
+
+/* 手机端优化 */
+@media (max-width: 740px) {
+  .container {
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+  
+  .label {
+    position: absolute;
+    right: -16px;
+    top: -2px;
+    font-size: 12px;
+    font-weight: 350;
+  }
+  #display-img {
+    max-width: 100vw;
+    max-height: 35vh;
+  }
+  #display-text {
+    bottom: 60px;
+    font-size: 14px;
+  }
+}

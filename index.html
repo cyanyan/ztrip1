@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Take a trip to the moon</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+</head>
+<body>
+  <!-- 顶部 Today 信息 -->
+  <div id="moon-info"></div>
+
+  <!-- 居中显示的月亮容器 -->
+  <div class="container">
+    <div class="moon-block" id="moon1-block">
+      <canvas id="moon1" width="100" height="100"></canvas>
+      <div class="label">1x</div>
+    </div>
+    <div class="moon-block" id="moon2-block">
+      <canvas id="moon2" width="200" height="200"></canvas>
+      <div class="label">2x</div>
+    </div>
+    <div class="moon-block" id="moon3-block">
+      <canvas id="moon3" width="300" height="300"></canvas>
+      <div class="label">3x</div>
+    </div>
+  </div>
+
+  <!-- 图片显示（最下层） -->
+  <div id="display-area">
+    <img id="display-img" src="" alt="" />
+  </div>
+  <p id="display-text"></p>
+
+  <!-- 底部编号（最上层） -->
+  <div class="number-bar">
+    <div id="numbers"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
